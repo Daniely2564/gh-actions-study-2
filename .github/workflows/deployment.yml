@@ -1,6 +1,6 @@
 # whenever new push comes in we would like to run this job
 name: Deploy Project
-on: push
+on: [push, workflow_dispatch] # instead of just triggering on push, we can make it an array and run on many events
 jobs:
   # Job names are not fixed. you can come up with your name
   test:
