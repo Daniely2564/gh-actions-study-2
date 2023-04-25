@@ -1,7 +1,8 @@
 # whenever new push comes in we would like to run this job
-name: Test my react app
+name: Deploy Project
 on: push
 jobs:
+  # Job names are not fixed. you can come up with your name
   test:
     # You will always need to get the code into the working machine
     runs-on: ubuntu-latest
@@ -16,3 +17,18 @@ jobs:
         run: npm ci # ci that installs packages locked inside of package-lock
       - name: Run tests
         run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3 # uses for actions
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying..."
