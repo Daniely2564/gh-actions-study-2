@@ -18,6 +18,7 @@ jobs:
       - name: Run tests
         run: npm test
   deploy:
+    needs: test # refer to the job 'test'. you can also make it an array [test,job2,...so on]
     runs-on: ubuntu-latest
     steps:
       - name: Get code
