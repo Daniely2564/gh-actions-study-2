@@ -2,8 +2,19 @@ name: Events Demo 1
 on: # problem with push is that every push will trigger this workflow. We would like to avoid this.
   pull_request:
     types: opened # same here. can be an array of items or provide - [item] - [item] as a list
+    branches:
+      - main
+      - "dev-*"
   workflow_dispatch:
-
+  push:
+    branches:
+      - main
+      - "dev-*"
+      - "feat/**"
+    paths:
+      - "**.js"
+    paths-ignore:
+      - ".github/workflows/*"
 jobs:
   deploy:
     runs-on: ubuntu-latest
